@@ -1,7 +1,6 @@
 // Simple LibWebSockets test client
 //////////////////////////////////////////////////////////////////////////
 #include <libwebsockets.h>
-#include <include/libwebsockets/lws-timeout-timer.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -67,7 +66,7 @@ static int callback_test(struct lws* wsi, enum lws_callback_reasons reason, void
 	// The message we send back to the echo server
 	const char msg[128] = "{\"op\" : \"1\"}";
 
-  lws_set_timer_usecs(wsi, reason, 1000);
+  lws_set_timer_usecs(wsi, 1000);
 
 	// The buffer holding the data to send
 	// NOTICE: data which is sent always needs to have a certain amount of memory (LWS_PRE) preserved for headers
@@ -143,7 +142,7 @@ static int callback_test(struct lws* wsi, enum lws_callback_reasons reason, void
 //////////////////////////////////////////////////////////////////////////
 
 // Main application entry
-int main()
+int test()
 {
 	lws_set_log_level( LLL_ERR | LLL_WARN | LLL_NOTICE, lwsl_emit_syslog); // We don't need to see the notice messages
 

@@ -2,16 +2,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "libs/httplibs.h"
+#include "lib/httplibs.h"
+#include "lib/websocketlibs.c"
 
 const char HANGAR_CHANNEL = 123;
 
 void sayHello();
 void getChannel();
 int httpRequest();
+int webSockets();
 
 int main(int argc, char ** argv) {
     int data = httpRequest(argc,argv);
+    int ws = webSockets();
 
     return data;
 
@@ -46,4 +49,8 @@ int httpRequest(int argc, char ** argv){
         free(data);
     }
     return 0;
+}
+
+int webSockets() {
+ test();
 }
